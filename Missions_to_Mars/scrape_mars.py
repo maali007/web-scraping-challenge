@@ -48,6 +48,18 @@ def scrape_fmi():
         
     return mars_info
 
+def scrape_mf():
+    # Go to the Mars Facts webpage and scrape the table with mars facts only (not earth-mars comparison) using Pandas
+    mf_url = 'https://galaxyfacts-mars.com/'
+    tables = pd.read_html(facts_url)
+    mf_df = tables[1]
+    # Rename the columns
+    mf_df.columns = ['Attribute','Value']
+    html_table = mf_df.to_html()
+    mars_info["mf"] = html_table
+
+    return mars_info
+
 
 
 
