@@ -17,8 +17,8 @@ def scrape_mns():
     browser = scrape_info()
 
     # Use splinter module to go to visit Nasa news site
-    url = 'https://redplanetscience.com'
-    browser.visit(url)
+    mns_url = 'https://redplanetscience.com'
+    browser.visit(mns_url)
 
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
@@ -28,6 +28,26 @@ def scrape_mns():
     mars_info["pt"] = soup.find('section', class_='image_and_description_container').find('div', class_='article_teaser_body').text
         
     return mars_info
+
+def scrape_fmi():
+
+    browser = init_browser()
+
+    # Use splinter module to go to visit JPL Mars Space images site
+    fsi_url = 'https://spaceimages-mars.com'
+    browser.visit(fsi_url)
+
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+
+    fmi_url = soup.find('img', class_='headerimage')['src']
+    main_url = 'https://www.jpl.nasa.gov'
+    
+    fmi_url = fsi_url + fmi_url
+    mars_info["fmi_url"] = fmiurl 
+        
+    return mars_info
+
 
 
 
