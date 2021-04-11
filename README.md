@@ -10,5 +10,7 @@
 <hr>
 
 <h3>Part 2: MongoDB and Flask Application</h3>
-<p>Use MongoDB with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above.</p>
+<p>Used MongoDB with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above. Here's a <a href="https://github.com/maali007/web-scraping-challenge/blob/main/Missions_to_Mars/Screenshot.png" target="_blank">screenshot</a> of the result: </p>
+
+<img src="https://github.com/maali007/web-scraping-challenge/blob/main/Missions_to_Mars/Screenshot.png">
 
