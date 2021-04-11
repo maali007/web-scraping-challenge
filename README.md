@@ -18,5 +18,5 @@
 <hr>
 <h3>ISSUES</h3>
 <ul>
-  <li>Instructions say Mars facts for secong requirement in Part 1. However, there are two tables in <a href="https://galaxyfacts-mars.com/">galaxyfacts-mars.com</a>. The first one has a comparison between Mars and Earth and is in the screenshot in the assignment guide. The second one is only Mars facts. I switched back and forth between the two then settled on the comparison one to conform with the guide image.</li>
+  <li>Instructions say Mars facts table for second requirement in Part 1. However, there are two tables in <a href="https://galaxyfacts-mars.com/">galaxyfacts-mars.com</a>. The first one has a comparison between Mars and Earth and is in the screenshot in the assignment guide. The second one is only Mars facts. I switched back and forth between the two then finally settled for the comparison one to conform with the guide image.</li>
 </ul>  
