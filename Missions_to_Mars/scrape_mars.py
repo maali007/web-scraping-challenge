@@ -5,16 +5,16 @@ import requests
 import pandas as pd
 
 
-def scrape_info():
+def init_browser():
     # Path to chromedriver
-    executable_path = {'executable_path': ChromeDriverManager().install()}
+    executable_path = {'executable_path': '/Users/fkmaa/Downloads/chromedriver_win32/chromedriver'}
     return Browser('chrome', **executable_path, headless=False)
 
 mars_info = {}
 
-def scrape_mns():
+def scrape_info():
 
-    browser = scrape_info()
+    browser = init_browser()
 
     # Use splinter module to go to Nasa news site
     mns_url = 'https://redplanetscience.com'
@@ -30,14 +30,9 @@ def scrape_mns():
     mars_info["nt"] = soup.find('section', class_='image_and_description_container').find('div', class_='content_title').text
     mars_info["pt"] = soup.find('section', class_='image_and_description_container').find('div', class_='article_teaser_body').text
         
-    return mars_info
-
-def scrape_fmi():
-
-    browser = scrape_info()
 
     # Use splinter module to go to JPL Mars Space images site
-    fsi_url = 'https://spaceimages-mars.com'
+    fsi_url = 'https://spaceimages-mars.com/'
     browser.visit(fsi_url)
 
     # HTML Object
@@ -48,13 +43,10 @@ def scrape_fmi():
 
     # Get current featured mars image url
     fmi_url = soup.find('img', class_='headerimage')['src']
-    main_url = 'https://www.jpl.nasa.gov' 
     fmi_url = fsi_url + fmi_url
     mars_info["fmi_url"] = fmi_url 
         
-    return mars_info
 
-def scrape_mf():
     # Go to the Mars Facts webpage
     mf_url = 'https://galaxyfacts-mars.com/'
 
@@ -62,19 +54,16 @@ def scrape_mf():
     tables = pd.read_html(mf_url)
 
     # Scrape only the table with mars facts (not earth-mars comparison)  
-    mf_df = tables[1]
+    mf_df = tables[0]
 
     # Rename the columns
-    mf_df.columns = ['Attribute','Value']
+    mf_df.columns = ['Description','Mars', 'Earth']
+    mf_df.set_index("Description", inplace=True)
     html_table = mf_df.to_html()
     mars_info["mf"] = html_table
 
-    return mars_info
 
-def scrape_mars_hemispheres():
-
-    browser = scrape_info()
-
+    
     # Use splinter module to go to Astrogeology site
     hemispheres_url = 'https://marshemispheres.com'
     browser.visit(hemispheres_url)
@@ -117,6 +106,8 @@ def scrape_mars_hemispheres():
 
     mars_info["hemisphere_img_urls"] = hemisphere_img_urls
     
+    # Close the browser after scraping
+    browser.quit()    
     return mars_info
 
 
